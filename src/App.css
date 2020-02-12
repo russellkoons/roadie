@@ -1,7 +1,26 @@
-.App {
+header {
+  height: 30px;
+  background-color: #000000;
+}
+
+img {
   width: 100%;
+}
+
+.App {
+  width: 65%;
+  margin: auto;
 }
 
 .product {
   display: flex;
+  justify-content: space-between;
+}
+
+.image {
+  flex: 1;
+}
+
+.desc {
+  flex: 2;
 }

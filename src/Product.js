@@ -8,7 +8,7 @@ const Product = () => {
       <div className="image">
         <img src={Mockup} alt="Roadie"/>
       </div>
-      <div classname="desc">
+      <div className="desc">
         <h1>ROADIE COMMUNICATOR - INCLUDES INSTALLATION SOFTWARE</h1>
         <p>by <strong>Roadie</strong></p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
