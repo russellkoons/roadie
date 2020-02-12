@@ -58,22 +58,13 @@ img {
 
 /* Three column layout */
 .side {
-  float: left;
   width: 30%;
   margin-top: 10px;
 }
 
 .middle {
-  float: right;
   width: 70%;
   margin-top: 10px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 /* The bar container */

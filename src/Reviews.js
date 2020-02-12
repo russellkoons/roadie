@@ -1,94 +1,98 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Reviews = (props) => {
-  let total = 0;
-  let fives = [];
-  let fours = [];
-  let threes = [];
-  let twos = [];
-  let ones = [];
-  
-  props.reviews.forEach(rev => {
-    total += parseInt(rev.rating);
+const Reviews = props => {
+  useEffect(() => {
+    sortReviews(props.reviews);
+  }, [props])
 
-    if (rev.rating === '5') {
-      fives.push(rev);
-    } else if (rev.rating === '4') {
-      fours.push(rev);
-    } else if (rev.rating === '3') {
-      threes.push(rev);
-    } else if (rev.rating === '2') {
-      twos.push(rev);
-    } else {
-      ones.push(rev);
+  let col1 = [];
+  let col2 = [];
+
+  const sortReviews = reviews => {
+    for (let i = 0; i < reviews.length; i++) {
+      if (i % 2 !== 0) {
+        col1.push(
+          <div key={i}>
+            <h2>{reviews[i].title}</h2>
+            <p>By {reviews[i].user} on {reviews[i].date}</p>
+            <p>{reviews[i].review}</p>
+          </div>
+        )
+      } else {
+        col2.push(
+          <div key={i}>
+            <h2>{reviews[i].title}</h2>
+            <p>By {reviews[i].user} on {reviews[i].date}</p>
+            <p>{reviews[i].review}</p>
+          </div>
+        )
+      }
     }
-  });
-
-  const score = total / props.reviews.length;
-
-  const fiveStar = (fives.length / props.reviews.length * 100).toString() + '%';
-  const fourStar = (fours.length / props.reviews.length * 100).toString() + '%';
-  const threeStar = (threes.length / props.reviews.length * 100).toString() + '%';
-  const twoStar = (twos.length / props.reviews.length * 100).toString() + '%';
-  const oneStar = (ones.length / props.reviews.length * 100).toString() + '%';
-
-  const showRatings = num => {
-    console.log(num);
   }
 
   return (
     <div className="flexbox">
       <div className="col-1">
-        <p>{score} out of 5</p>
+        <p>{props.score} out of 5</p>
         <p>{props.reviews.length} reviews</p>
-        <div className="row">
-          <div className="side">
-            <button onClick={() => showRatings('5')}>5 star</button>
-          </div>
-          <div className="middle">
-            <div className="bar-container">
-              <div className="bar" style={{width: fiveStar}}></div>
+        <div>
+          <div className="flexbox">
+            <div className="side">
+              <button onClick={() => props.display(props.fives)}>5 star</button>
+            </div>
+            <div className="middle">
+              <div className="bar-container">
+                <div className="bar" style={{width: props.percentages[0]}}></div>
+              </div>
             </div>
           </div>
-          <div className="side">
-            <button onClick={() => showRatings('4')}>4 star</button>
-          </div>
-          <div className="middle">
-            <div className="bar-container">
-              <div className="bar" style={{width: fourStar}}></div>
+          <div className="flexbox">
+            <div className="side">
+              <button onClick={() => props.display(props.fours)}>4 star</button>
+            </div>
+            <div className="middle">
+              <div className="bar-container">
+                <div className="bar" style={{width: props.percentages[1]}}></div>
+              </div>
             </div>
           </div>
-          <div className="side">
-            <button onClick={() => showRatings('3')}>3 star</button>
-          </div>
-          <div className="middle">
-            <div className="bar-container">
-              <div className="bar" style={{width: threeStar}}></div>
+          <div className="flexbox">
+            <div className="side">
+              <button onClick={() => props.display(props.threes)}>3 star</button>
+            </div>
+            <div className="middle">
+              <div className="bar-container">
+                <div className="bar" style={{width: props.percentages[2]}}></div>
+              </div>
             </div>
           </div>
-          <div className="side">
-            <button onClick={() => showRatings('2')}>2 star</button>
-          </div>
-          <div className="middle">
-            <div className="bar-container">
-              <div className="bar" style={{width: twoStar}}></div>
+          <div className="flexbox">
+            <div className="side">
+              <button onClick={() => props.display(props.twos)}>2 star</button>
+            </div>
+            <div className="middle">
+              <div className="bar-container">
+                <div className="bar" style={{width: props.percentages[3]}}></div>
+              </div>
             </div>
           </div>
-          <div className="side">
-            <button onClick={() => showRatings('1')}>1 star</button>
-          </div>
-          <div className="middle">
-            <div className="bar-container">
-              <div className="bar" style={{width: oneStar}}></div>
+          <div className="flexbox">
+            <div className="side">
+              <button onClick={() => props.display(props.ones)}>1 star</button>
+            </div>
+            <div className="middle">
+              <div className="bar-container">
+                <div className="bar" style={{width: props.percentages[4]}}></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div className="col-1">
-
+        {col1}
       </div>
       <div className="col-1">
-
+        {col2}
       </div>
     </div>
   );
