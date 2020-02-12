@@ -15,6 +15,10 @@ const Product = () => {
         <ul>
           <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</li>
         </ul>
+        <div id="buttons">
+          <button id="review-button">LEAVE REVIEW</button>
+          <button id="cart-button">ADD TO CART</button>
+        </div>
       </div>
     </div>
   );

@@ -14,11 +14,11 @@ img {
 
 .product {
   display: flex;
-  justify-content: space-between;
 }
 
 .image {
   flex: 1;
+  margin-right: 30px;
 }
 
 .desc {
