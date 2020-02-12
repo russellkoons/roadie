@@ -31,6 +31,7 @@ function App() {
     <div className="App">
       <header></header>
       <Product />
+      <h1>CUSTOMER REVIEWS</h1>
       <Reviews reviews={reviews}/>
     </div>
   );

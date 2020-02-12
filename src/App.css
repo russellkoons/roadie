@@ -1,4 +1,4 @@
-button {
+.upperbutton {
   padding: 15px 25px 15px 25px;
   border-radius: 5px;
   font-size: 16px;
@@ -39,7 +39,7 @@ img {
   margin: auto;
 }
 
-.product {
+.flexbox {
   display: flex;
 }
 
@@ -50,4 +50,41 @@ img {
 
 .desc {
   flex: 2;
+}
+
+.col-1 {
+  flex: 1;
+}
+
+/* Three column layout */
+.side {
+  float: left;
+  width: 30%;
+  margin-top: 10px;
+}
+
+.middle {
+  float: right;
+  width: 70%;
+  margin-top: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+.bar {
+  background-color: goldenrod;
+  height: 18px;
 }

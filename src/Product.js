@@ -3,7 +3,7 @@ import Mockup from './assets/Software-Box-Mock-Up.jpg'
 
 const Product = () => {
   return (
-    <div className="product">
+    <div className="flexbox">
       <div className="image">
         <img src={Mockup} alt="Roadie"/>
       </div>
@@ -15,8 +15,8 @@ const Product = () => {
           <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</li>
         </ul>
         <div id="buttons">
-          <button id="review-button">LEAVE REVIEW</button>
-          <button id="cart-button">ADD TO CART</button>
+          <button id="review-button" className="upperbutton">LEAVE REVIEW</button>
+          <button id="cart-button" className="upperbutton">ADD TO CART</button>
         </div>
       </div>
     </div>
