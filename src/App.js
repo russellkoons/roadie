@@ -4,11 +4,15 @@ import Product from './Product.js'
 import Reviews from './Reviews.js';
 
 function App() {
+  const isInitial = useRef(true);
   const [reviews, setReviews] = useState([]);
   const [hasErrors, setErrors] = useState(false);
 
   useEffect(() => {
-    fetchReviews();
+    if (isInitial.current) {
+      isInitial.current = false;
+      fetchReviews();
+    }
   }, [reviews]);
 
   async function fetchReviews() {
@@ -25,6 +29,7 @@ function App() {
 
   return (
     <div className="App">
+      <header></header>
       <Product />
       <Reviews reviews={reviews}/>
     </div>

@@ -4,7 +4,6 @@ import Mockup from './assets/Software-Box-Mock-Up.jpg'
 const Product = () => {
   return (
     <div className="product">
-      <header></header>
       <div className="image">
         <img src={Mockup} alt="Roadie"/>
       </div>
