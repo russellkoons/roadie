@@ -36,7 +36,7 @@ const Product = props => {
                   rating: '5',
                   review: 'Blah blah blah blah blah',
                   date: moment().format('LL')
-                })}>Click me</button>
+                }, close)}>Click me</button>
               </div>
             )}
             </Popup>

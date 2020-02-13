@@ -11,9 +11,11 @@ function App() {
   const [column2, setCol2] = useState([]);
 
   useEffect(() => {
+    // Checks if this is the first render and fetches if so
     if (isInitial.current) {
       isInitial.current = false;
 
+      // I made a GET endpoint for an old API I built to fetch the reviews
       fetch('https://pawlist-api.herokuapp.com/roadie', {
         method: 'get'
       })
@@ -28,6 +30,7 @@ function App() {
     }
   }, [reviews]);
 
+  // I used two columns to display the reviews so this function sorts them into columns based on date
   const sortReviews = revs => {
     let col1 = [];
     let col2 = [];
@@ -97,10 +100,14 @@ function App() {
     setCol2(col2);
   }
 
-  const addReview = rev => {
+  // Adds review and closes modal popup
+  const addReview = (rev, close) => {
     setReviews([...reviews, rev]);
+    close();
   }
 
+
+  // Gets the total of the ratings and sorts the reviews by ratings
   let total = 0;
   let fives = [];
   let fours = [];
@@ -125,8 +132,10 @@ function App() {
     }
   });
 
+  // Calculates the score to 1 decimal place
   const score = Math.round(total / reviews.length * 10) / 10;
 
+  // Gets the percentages of all the ratings to pass down to Reviews component
   const fiveStar = (fives.length / reviews.length * 100).toString() + '%';
   const fourStar = (fours.length / reviews.length * 100).toString() + '%';
   const threeStar = (threes.length / reviews.length * 100).toString() + '%';
