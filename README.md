@@ -2,6 +2,6 @@
 
 ### How to Run
 
-- 'npm start' or 'yarn start'
+- 'npm start'
 
 #### Thank you for the opportunity!
