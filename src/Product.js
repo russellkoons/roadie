@@ -1,8 +1,9 @@
 import React from 'react';
 import Mockup from './assets/Software-Box-Mock-Up.jpg'
-import Popup from "reactjs-popup";
+import Popup from 'reactjs-popup';
+import moment from 'moment';
 
-const Product = () => {
+const Product = props => {
   return (
     <div className="flexbox">
       <div className="image">
@@ -29,6 +30,13 @@ const Product = () => {
                   &times;
                 </button>
                 <h1 style={{textAlign: 'center'}}>ADD REVIEW</h1>
+                <button onClick={() => props.add({
+                  user: 'Test',
+                  title: 'Test',
+                  rating: '5',
+                  review: 'Blah blah blah blah blah',
+                  date: moment().format('LL')
+                })}>Click me</button>
               </div>
             )}
             </Popup>

@@ -12,7 +12,7 @@ const Reviews = props => {
 
   return (
     <div className="col-1">
-      <p>          
+      <div>          
         <StarRatings 
           rating={score}
           name="rating"
@@ -22,7 +22,7 @@ const Reviews = props => {
         <span style={{float: 'right'}}>
           {props.score} out of 5 
         </span>
-      </p>
+      </div>
       <button className="sort-button" onClick={() => props.display(props.revs[5])}>{props.length} reviews</button>
       <div>
         <div className="flexbox">

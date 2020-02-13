@@ -10,6 +10,24 @@ function App() {
   const [column1, setCol1] = useState([]);
   const [column2, setCol2] = useState([]);
 
+  useEffect(() => {
+    if (isInitial.current) {
+      isInitial.current = false;
+
+      fetch('https://pawlist-api.herokuapp.com/roadie', {
+        method: 'get'
+      })
+        .then(res => res.json())
+        .then(res => {
+          setReviews(res);
+          sortReviews(res);
+        })
+        .catch(() => console.warn('Uh oh'));
+    } else {
+      sortReviews(reviews);
+    }
+  }, [reviews]);
+
   const sortReviews = revs => {
     let col1 = [];
     let col2 = [];
@@ -79,26 +97,9 @@ function App() {
     setCol2(col2);
   }
 
-  async function fetchReviews() {
-    await fetch('https://pawlist-api.herokuapp.com/roadie', {
-      method: 'get'
-    })
-    .then(res => res.json())
-    .then(res => {
-      setReviews(res);
-      sortReviews(res);
-    })
-    .catch(() => console.warn('Uh oh'));
+  const addReview = rev => {
+    setReviews([...reviews, rev]);
   }
-
-  useEffect(() => {
-    if (isInitial.current) {
-      isInitial.current = false;
-      fetchReviews();
-    } else {
-      sortReviews(reviews);
-    }
-  }, [reviews]);
 
   let total = 0;
   let fives = [];
@@ -108,15 +109,16 @@ function App() {
   let ones = [];
   
   reviews.forEach(rev => {
-    total += parseInt(rev.rating);
+    const rating = rev.rating;
+    total += parseInt(rating);
 
-    if (rev.rating === '5') {
+    if (rating === '5') {
       fives.push(rev);
-    } else if (rev.rating === '4') {
+    } else if (rating === '4') {
       fours.push(rev);
-    } else if (rev.rating === '3') {
+    } else if (rating === '3') {
       threes.push(rev);
-    } else if (rev.rating === '2') {
+    } else if (rating === '2') {
       twos.push(rev);
     } else {
       ones.push(rev);
@@ -134,7 +136,7 @@ function App() {
   return (
     <div className="App">
       <header></header>
-      <Product />
+      <Product add={addReview} />
       <h1>CUSTOMER REVIEWS</h1>
       <div className="flexbox">
         <Reviews score={score} length={reviews.length} display={sortReviews} percentages={[fiveStar, fourStar, threeStar, twoStar, oneStar]} revs={[fives, fours, threes, twos, ones, reviews]} />
