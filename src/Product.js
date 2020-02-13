@@ -30,29 +30,40 @@ const Product = props => {
                   &times;
                 </button>
                 <h2 style={{textAlign: 'center'}}>ADD REVIEW</h2>
-                <form>
-                  <label for="rating">Rating</label><br />
-                  <select id="rating">
-                    <option value="1">One star</option>
-                    <option value="2">Two stars</option>
-                    <option value="3">Three stars</option>
-                    <option value="4">Four stars</option>
-                    <option value="5">Five stars</option>
-                  </select><br /><br />
-                  <label for="user">Your name</label><br />
-                  <input id="user" type="text" /><br /><br />
-                  <label for="title">Review title</label><br />
-                  <input id="title" type="text" /><br /><br />
-                  <label for="review">Write your review below</label><br />
-                  <input type="textarea" id="review" />
+                <form style={{textAlign: 'left'}}>
+                  <div className="forminput">
+                    <label for="rating">Rating</label>
+                    <select id="rating" className="greyborder">
+                      <option value="1">One star</option>
+                      <option value="2">Two stars</option>
+                      <option value="3">Three stars</option>
+                      <option value="4">Four stars</option>
+                      <option value="5">Five stars</option>
+                    </select>
+                  </div>
+                  <div className="forminput">
+                    <label for="user">Your name</label>
+                    <input id="user" type="text" className="full greyborder" placeholder="Enter text here..." required />
+                  </div>
+                  <div className="forminput">
+                    <label for="title">Review title</label>
+                    <input id="title" type="text" className="full greyborder" placeholder="Enter text here..." required />
+                  </div>
+                  <div className="forminput">
+                    <label for="review">Write your review below</label>
+                    <textarea id="review" className="full greyborder" placeholder="Enter text here..." required />
+                  </div>
+                  <div style={{textAlign: "right"}}>
+                    <button className="leftbutton upperbutton" onClick={close}>CANCEL</button>
+                    <input type="submit" className="rightbutton upperbutton" onClick={() => props.add({
+                      user: 'Test',
+                      title: 'Test',
+                      rating: '5',
+                      review: 'Blah blah blah blah blah',
+                      date: moment().format('LL')
+                    }, close)} value="SUBMIT" />
+                  </div>
                 </form>
-                <button class="rightbutton" onClick={() => props.add({
-                  user: 'Test',
-                  title: 'Test',
-                  rating: '5',
-                  review: 'Blah blah blah blah blah',
-                  date: moment().format('LL')
-                }, close)}>Click me</button>
               </div>
             )}
             </Popup>

@@ -1,9 +1,32 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
 .upperbutton {
   padding: 15px 25px 15px 25px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
   margin: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+textarea {
+  font-family: sans-serif;
+}
+
+.greyborder {
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  padding: 3px;
 }
 
 button {
@@ -27,6 +50,18 @@ p {
 
 #buttons {
   text-align: right;
+}
+
+#rating {
+  width: 33%;
+}
+
+.full {
+  width: calc(100% - 15px);
+}
+
+#review {
+  height: 100px;
 }
 
 .rightbutton {
@@ -103,6 +138,11 @@ p {
 }
 
 .popup-content {
+  padding: 0 5px 5px 15px !important;
   border: 0px !important;
   border-radius: 5px;
+}
+
+.forminput {
+  margin-bottom: 10px;
 }
