@@ -2,21 +2,82 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Product from './Product.js'
 import Reviews from './Reviews.js';
+import StarRatings from 'react-star-ratings';
 
 function App() {
   const isInitial = useRef(true);
   const [reviews, setReviews] = useState([]);
-  const [hasErrors, setErrors] = useState(false);
-  let revs = reviews
+  const [column1, setCol1] = useState([]);
+  const [column2, setCol2] = useState([]);
 
-  useEffect(() => {
-    if (isInitial.current) {
-      isInitial.current = false;
-      fetchReviews();
+  const sortReviews = revs => {
+    let col1 = [];
+    let col2 = [];
+
+    if (revs.length % 2 === 0) {
+      for (let i = 0; i < revs.length; i++) {
+        if (i % 2 !== 0) {
+          col1.unshift(
+            <div key={i} className="review">
+              <p><strong>{revs[i].title}</strong></p>
+              <StarRatings 
+                rating={parseInt(revs[i].rating)}
+                starRatedColor="goldenrod"
+                starDimension="15px"
+              />
+              <p><sub>By {revs[i].user} on {revs[i].date}</sub></p>
+              <p>{revs[i].review}</p>
+            </div>
+          )
+        } else {
+          col2.unshift(
+            <div key={i} className="review">
+              <p><strong>{revs[i].title}</strong></p>
+              <StarRatings 
+                rating={parseInt(revs[i].rating)}
+                starRatedColor="goldenrod"
+                starDimension="15px"
+              />
+              <p><sub>By {revs[i].user} on {revs[i].date}</sub></p>
+              <p>{revs[i].review}</p>
+            </div>
+          )
+        }
+      }
     } else {
-      displayReviews(reviews);
+      for (let i = 0; i < revs.length; i++) {
+        if (i % 2 === 0) {
+          col1.unshift(
+            <div key={i} className="review">
+              <p><strong>{revs[i].title}</strong></p>
+              <StarRatings 
+                rating={parseInt(revs[i].rating)}
+                starRatedColor="goldenrod"
+                starDimension="15px"
+              />
+              <p><sub>By {revs[i].user} on {revs[i].date}</sub></p>
+              <p>{revs[i].review}</p>
+            </div>
+          )
+        } else {
+          col2.unshift(
+            <div key={i} className="review">
+              <p><strong>{revs[i].title}</strong></p>
+              <StarRatings 
+                rating={parseInt(revs[i].rating)}
+                starRatedColor="goldenrod"
+                starDimension="15px"
+              />
+              <p><sub>By {revs[i].user} on {revs[i].date}</sub></p>
+              <p>{revs[i].review}</p>
+            </div>
+          )
+        }
+      }
     }
-  }, [reviews]);
+    setCol1(col1);
+    setCol2(col2);
+  }
 
   async function fetchReviews() {
     await fetch('https://pawlist-api.herokuapp.com/roadie', {
@@ -25,14 +86,19 @@ function App() {
     .then(res => res.json())
     .then(res => {
       setReviews(res);
-      setErrors(false);
+      sortReviews(res);
     })
-    .catch(() => setErrors(true));
+    .catch(() => console.warn('Uh oh'));
   }
 
-  const displayReviews = list => {
-    revs = list;
-  }
+  useEffect(() => {
+    if (isInitial.current) {
+      isInitial.current = false;
+      fetchReviews();
+    } else {
+      sortReviews(reviews);
+    }
+  }, [reviews]);
 
   let total = 0;
   let fives = [];
@@ -57,7 +123,7 @@ function App() {
     }
   });
 
-  const score = total / reviews.length;
+  const score = Math.round(total / reviews.length * 10) / 10;
 
   const fiveStar = (fives.length / reviews.length * 100).toString() + '%';
   const fourStar = (fours.length / reviews.length * 100).toString() + '%';
@@ -70,7 +136,15 @@ function App() {
       <header></header>
       <Product />
       <h1>CUSTOMER REVIEWS</h1>
-      <Reviews score={score} reviews={revs} display={displayReviews} percentages={[fiveStar, fourStar, threeStar, twoStar, oneStar]} ratings={[fives, fours, threes, twos, ones]} />
+      <div className="flexbox">
+        <Reviews score={score} length={reviews.length} display={sortReviews} percentages={[fiveStar, fourStar, threeStar, twoStar, oneStar]} revs={[fives, fours, threes, twos, ones, reviews]} />
+        <div className="col-1">
+          {column1}
+        </div>
+        <div className="col-1">
+          {column2}
+        </div>
+      </div>
     </div>
   );
 }

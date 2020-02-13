@@ -6,6 +6,10 @@
   margin: 5px;
 }
 
+button {
+  cursor: pointer;
+}
+
 header {
   height: 50px;
   margin-bottom: 20px;;
@@ -15,6 +19,10 @@ header {
 
 img {
   width: 100%;
+}
+
+p {
+  margin: 10px 0 10px 0;
 }
 
 #buttons {
@@ -35,7 +43,7 @@ img {
 }
 
 .App {
-  width: 65%;
+  width: 70%;
   margin: auto;
 }
 
@@ -54,9 +62,17 @@ img {
 
 .col-1 {
   flex: 1;
+  margin: 0px 10px 30px 10px;
 }
 
-/* Three column layout */
+.review {
+  margin: 10px 0px 10px 0px;
+  height: 240px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 .side {
   width: 30%;
   margin-top: 10px;
@@ -67,7 +83,6 @@ img {
   margin-top: 10px;
 }
 
-/* The bar container */
 .bar-container {
   width: 100%;
   background-color: #f1f1f1;
@@ -78,4 +93,11 @@ img {
 .bar {
   background-color: goldenrod;
   height: 18px;
+}
+
+.sort-button {
+  border: 0;
+  background-color: white;
+  color: goldenrod;
+  text-decoration: underline;
 }

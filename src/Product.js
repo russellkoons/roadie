@@ -1,5 +1,6 @@
 import React from 'react';
 import Mockup from './assets/Software-Box-Mock-Up.jpg'
+import Popup from "reactjs-popup";
 
 const Product = () => {
   return (
@@ -15,9 +16,25 @@ const Product = () => {
           <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</li>
         </ul>
         <div id="buttons">
-          <button id="review-button" className="upperbutton">LEAVE REVIEW</button>
+          <Popup 
+            trigger={
+              <button id="review-button" className="upperbutton">LEAVE REVIEW</button>
+            } 
+            modal
+            closeOnDocumentClick
+          >
+            {close => (
+              <div className="modal">
+                <button className="close" onClick={close}>
+                  &times;
+                </button>
+                <h1 style={{textAlign: 'center'}}>ADD REVIEW</h1>
+              </div>
+            )}
+            </Popup>
           <button id="cart-button" className="upperbutton">ADD TO CART</button>
         </div>
+        
       </div>
     </div>
   );
