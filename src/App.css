@@ -44,6 +44,10 @@ img {
   width: 100%;
 }
 
+input[type=submit] {
+  cursor: pointer;
+}
+
 p {
   margin: 10px 0 10px 0;
 }
@@ -145,4 +149,11 @@ p {
 
 .forminput {
   margin-bottom: 10px;
+}
+
+.close {
+  border: 0px;
+  background-color: white;
+  color: #6699ff;
+  font-size: 32px;
 }
