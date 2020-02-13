@@ -96,6 +96,7 @@ function App() {
         }
       }
     }
+
     setCol1(col1);
     setCol2(col2);
   }
@@ -105,7 +106,6 @@ function App() {
     setReviews([...reviews, rev]);
     close();
   }
-
 
   // Gets the total of the ratings and sorts the reviews by ratings
   let total = 0;

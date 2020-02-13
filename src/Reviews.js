@@ -2,8 +2,8 @@ import React from 'react';
 import StarRatings from 'react-star-ratings';
 
 const Reviews = props => {
-  // The StarRatings component was throwing an error because it tried to render before the score was calculated
-  // so this is here to subvert the error
+  // The StarRatings component was throwing an error because it tried to render before
+  // the fetch so this is here to subvert the error
   let score;
 
   if (!props.score) {

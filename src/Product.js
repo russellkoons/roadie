@@ -19,7 +19,7 @@ const Product = props => {
         <div id="buttons">
           <Popup 
             trigger={
-              <button id="review-button" className="upperbutton">LEAVE REVIEW</button>
+              <button className="upperbutton leftbutton">LEAVE REVIEW</button>
             } 
             modal
             closeOnDocumentClick
@@ -29,8 +29,24 @@ const Product = props => {
                 <button className="close" onClick={close}>
                   &times;
                 </button>
-                <h1 style={{textAlign: 'center'}}>ADD REVIEW</h1>
-                <button onClick={() => props.add({
+                <h2 style={{textAlign: 'center'}}>ADD REVIEW</h2>
+                <form>
+                  <label for="rating">Rating</label><br />
+                  <select id="rating">
+                    <option value="1">One star</option>
+                    <option value="2">Two stars</option>
+                    <option value="3">Three stars</option>
+                    <option value="4">Four stars</option>
+                    <option value="5">Five stars</option>
+                  </select><br /><br />
+                  <label for="user">Your name</label><br />
+                  <input id="user" type="text" /><br /><br />
+                  <label for="title">Review title</label><br />
+                  <input id="title" type="text" /><br /><br />
+                  <label for="review">Write your review below</label><br />
+                  <input type="textarea" id="review" />
+                </form>
+                <button class="rightbutton" onClick={() => props.add({
                   user: 'Test',
                   title: 'Test',
                   rating: '5',
@@ -40,7 +56,7 @@ const Product = props => {
               </div>
             )}
             </Popup>
-          <button id="cart-button" className="upperbutton">ADD TO CART</button>
+          <button className="upperbutton rightbutton">ADD TO CART</button>
         </div>
         
       </div>
