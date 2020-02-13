@@ -68,7 +68,7 @@ const Product = props => {
                 </form>
               </div>
             )}
-            </Popup>
+          </Popup>
           <button className="upperbutton rightbutton">ADD TO CART</button>
         </div>
       </div>
